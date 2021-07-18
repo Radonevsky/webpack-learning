@@ -32,6 +32,10 @@ module.exports = {
           esModule: false,
         },
       },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        loader: 'file-loader'
+      },
     ]
   }
 }
