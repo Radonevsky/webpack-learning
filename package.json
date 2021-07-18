@@ -1,0 +1,27 @@
+{
+  "name": "webpack-learning",
+  "version": "1.0.0",
+  "description": "webpack learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Radonevsky/webpack-learning.git"
+  },
+  "keywords": [
+    "javascript",
+    "webpack"
+  ],
+  "author": "Radonevsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Radonevsky/webpack-learning/issues"
+  },
+  "homepage": "https://github.com/Radonevsky/webpack-learning#readme",
+  "devDependencies": {
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
