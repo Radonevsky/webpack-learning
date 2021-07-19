@@ -182,17 +182,6 @@ eval("module.exports = {\"email\":{\"to\":[\"Radonevsky\"],\"from\":[\"Webpack\"
 
 /***/ }),
 
-/***/ "./Post.js":
-/*!*****************!*\
-  !*** ./Post.js ***!
-  \*****************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Post)\n/* harmony export */ });\nclass Post {\r\n  constructor(title, img) {\r\n    this.title = title\r\n    this.img = img\r\n    this.date = new Date()\r\n  }\r\n\r\n  toString() {\r\n    return JSON.stringify({\r\n      title: this.title,\r\n      date: this.date.toJSON(),\r\n      img: this.img,\r\n    })\r\n  }\r\n}\n\n//# sourceURL=webpack:///./Post.js?");
-
-/***/ }),
-
 /***/ "./assets/json.json":
 /*!**************************!*\
   !*** ./assets/json.json ***!
@@ -211,7 +200,18 @@ eval("module.exports = JSON.parse('{\"title\":\"Hello, world!\"}');\n\n//# sourc
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Post__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Post */ \"./Post.js\");\n/* harmony import */ var _assets_json_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/json.json */ \"./assets/json.json\");\n/* harmony import */ var _assets_data_xml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/data.xml */ \"./assets/data.xml\");\n/* harmony import */ var _assets_data_xml__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_data_xml__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _assets_data_csv__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/data.csv */ \"./assets/data.csv\");\n/* harmony import */ var _assets_data_csv__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_data_csv__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/logo.png */ \"./assets/logo.png\");\n/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_assets_logo_png__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/style.css */ \"./styles/style.css\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nconst post = new _Post__WEBPACK_IMPORTED_MODULE_0__.default('Webpack Post Title', (_assets_logo_png__WEBPACK_IMPORTED_MODULE_4___default()))\r\n\r\nconsole.log('post to string:', post.toString())\r\n\r\nconsole.log('JSON:', _assets_json_json__WEBPACK_IMPORTED_MODULE_1__)\r\nconsole.log('XML:', (_assets_data_xml__WEBPACK_IMPORTED_MODULE_2___default()))\r\nconsole.log('CSV:', (_assets_data_csv__WEBPACK_IMPORTED_MODULE_3___default()))\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_Post__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @models/Post */ \"./models/Post.js\");\n/* harmony import */ var _assets_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/json */ \"./assets/json.json\");\n/* harmony import */ var _assets_data_xml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/data.xml */ \"./assets/data.xml\");\n/* harmony import */ var _assets_data_xml__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_data_xml__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _assets_data_csv__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/data.csv */ \"./assets/data.csv\");\n/* harmony import */ var _assets_data_csv__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_assets_data_csv__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/assets/logo.png */ \"./assets/logo.png\");\n/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_assets_logo_png__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/style.css */ \"./styles/style.css\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nconst post = new _models_Post__WEBPACK_IMPORTED_MODULE_0__.default('Webpack Post Title', (_assets_logo_png__WEBPACK_IMPORTED_MODULE_4___default()))\r\n\r\nconsole.log('post to string:', post.toString())\r\n\r\nconsole.log('JSON:', _assets_json__WEBPACK_IMPORTED_MODULE_1__)\r\nconsole.log('XML:', (_assets_data_xml__WEBPACK_IMPORTED_MODULE_2___default()))\r\nconsole.log('CSV:', (_assets_data_csv__WEBPACK_IMPORTED_MODULE_3___default()))\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./models/Post.js":
+/*!************************!*\
+  !*** ./models/Post.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Post)\n/* harmony export */ });\nclass Post {\r\n  constructor(title, img) {\r\n    this.title = title\r\n    this.img = img\r\n    this.date = new Date()\r\n  }\r\n\r\n  toString() {\r\n    return JSON.stringify({\r\n      title: this.title,\r\n      date: this.date.toJSON(),\r\n      img: this.img,\r\n    })\r\n  }\r\n}\n\n//# sourceURL=webpack:///./models/Post.js?");
 
 /***/ })
 
