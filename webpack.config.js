@@ -22,8 +22,27 @@ const optimization = () => {
       new TerserWebpackPlugin()
     ]
   }
-
   return config
+}
+
+if (isDev) {
+  // only enable hot in development
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+}
+
+const cssLoaders = (extra) => {
+  const loaders = [
+    {
+      loader: MiniCssExtractPlugin.loader,
+    },
+    'css-loader'
+  ]
+
+  if (extra) {
+    loaders.push(extra)
+  }
+
+  return loaders;
 }
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
@@ -48,6 +67,7 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     port: 9000,
     hot: isDev
   },
@@ -68,34 +88,39 @@ module.exports = {
   new MiniCssExtractPlugin({
     filename: filename('css')
   }),
-  ],
+  ], //===</Plugins>===
+
+
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-
-        },
-        'css-loader']
+        use: cssLoaders()
       },
       {
         test: /\.less$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-        },
-          'css-loader',
-          'less-loader'
-        ]
+        use: cssLoaders('less-loader')
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
+        test: /\.s[ac]ss$/,
+        use: cssLoaders('sass-loader')
+      },
+      {
+        test: /\.(?:|gif|png|jpg|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: () => {
+            return isDev ? '[name][ext]' : '[name].[hash][ext]';
+          }
+        }
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        loader: 'file-loader'
+        generator: {
+          filename: () => {
+            return isDev ? '[name][ext]' : '[name].[hash][ext]';
+          }
+        }
       },
       {
         test: /\.xml$/,
@@ -108,3 +133,5 @@ module.exports = {
     ]
   }
 }
+
+

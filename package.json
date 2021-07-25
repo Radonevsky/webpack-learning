@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack serve --mode development --open"
+    "start": "webpack serve --mode development --open"
   },
   "repository": {
     "type": "git",
@@ -29,12 +29,13 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.1.0",
     "csv-loader": "^3.0.3",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "mini-css-extract-plugin": "^2.1.0",
+    "node-sass": "^6.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "sass-loader": "^12.1.0",
     "style-loader": "^3.1.0",
     "terser-webpack-plugin": "^5.1.4",
     "webpack": "^5.44.0",
