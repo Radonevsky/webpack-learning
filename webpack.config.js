@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
+const webpack = require("webpack");
+const {plugins} = require("@babel/preset-env/lib/plugins-compat-data");
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -51,7 +53,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry:{
-    main: './index.js',
+    main: ['@babel/polyfill', './index.js'],
     analytics: './analytics.js',
   },
   output: {
@@ -129,6 +131,16 @@ module.exports = {
       {
         test: /\.csv$/,
         use: ['csv-loader']
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
     ]
   }
