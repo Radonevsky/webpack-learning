@@ -27,10 +27,9 @@ const optimization = () => {
   return config
 }
 
-if (isDev) {
-  // only enable hot in development
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-}
+
+
+
 
 const cssLoaders = (extra) => {
   const loaders = [
@@ -54,7 +53,7 @@ module.exports = {
   mode: 'development',
   entry:{
     main: ['@babel/polyfill', './index.js'],
-    analytics: './analytics.js',
+    analytics: './analytics.ts',
   },
   output: {
     filename: filename('js'),
@@ -87,9 +86,10 @@ module.exports = {
       }
       ]
   }),
-  new MiniCssExtractPlugin({
-    filename: filename('css')
+    new MiniCssExtractPlugin({
+      filename: filename('css')
   }),
+    new webpack.HotModuleReplacementPlugin()
   ], //===</Plugins>===
 
 
@@ -139,6 +139,19 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.m?ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript'
+            ]
           }
         }
       },
