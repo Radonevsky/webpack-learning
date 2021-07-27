@@ -56,6 +56,17 @@ const babelUse = (preset) => {
   return useProp
 }
 
+const jsLoaders = () => {
+  const loaders = [
+    babelUse()
+  ]
+
+  if (isDev) {
+    loaders.push('eslint-loader')
+  }
+  return loaders
+}
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
@@ -144,7 +155,7 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
-        use: babelUse(),
+        use: jsLoaders(),
       },
       {
         test: /\.m?ts$/,
