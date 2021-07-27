@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-const webpack = require("webpack");
 const {plugins} = require("@babel/preset-env/lib/plugins-compat-data");
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -27,10 +26,6 @@ const optimization = () => {
   return config
 }
 
-
-
-
-
 const cssLoaders = (extra) => {
   const loaders = [
     {
@@ -48,11 +43,24 @@ const cssLoaders = (extra) => {
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 
+const babelUse = (preset) => {
+  const useProp = {
+    loader: "babel-loader",
+    options: {
+      presets: ['@babel/preset-env']
+    }
+  }
+  if (preset) {
+    useProp.options.presets.push(preset)
+  }
+  return useProp
+}
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry:{
-    main: ['@babel/polyfill', './index.js'],
+    main: ['@babel/polyfill', './index.jsx'],
     analytics: './analytics.ts',
   },
   output: {
@@ -68,9 +76,10 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
+    compress: true,
     port: 9000,
-    hot: isDev
+    hot: isDev,
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -89,7 +98,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css')
   }),
-    new webpack.HotModuleReplacementPlugin()
   ], //===</Plugins>===
 
 
@@ -135,25 +143,17 @@ module.exports = {
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        use: babelUse(),
       },
       {
         test: /\.m?ts$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-                '@babel/preset-env',
-                '@babel/preset-typescript'
-            ]
-          }
-        }
+        use: babelUse('@babel/preset-typescript'),
+      },
+      {
+        test: /\.m?jsx$/,
+        exclude: /node_modules/,
+        use: babelUse('@babel/preset-react'),
       },
     ]
   }
