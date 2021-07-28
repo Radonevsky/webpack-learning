@@ -11,3 +11,7 @@ class Util {
 }
 
 console.log('Util id:', Util.id)
+import('lodash').then(({ default:_ }) => {
+    console.log('Dynamic import lodash random(0, 10, true): ',_.random(0, 10, true))
+});
+

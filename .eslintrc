@@ -1,7 +1,8 @@
 {
   "parser": "babel-eslint",
   "rules": {
-    "no-unused-vars": "warn" //chek eslint
+    "no-unused-vars": "warn",
+    "no-debugger": "warn"
   },
   "env": {
     "es6": true,
